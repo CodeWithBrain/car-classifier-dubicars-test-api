@@ -6,8 +6,11 @@ use Dotenv\Dotenv;
 header('Content-Type: application/json');
 
 // Load API key from .env
-$dotenv = Dotenv::createImmutable(__DIR__ . '/..');
-$dotenv->load();
+if (getenv('RENDER') !== 'true' && file_exists(__DIR__ . '/../.env')) {
+    $dotenv = Dotenv::createImmutable(__DIR__ . '/..');
+    $dotenv->safeLoad(); // Safe for missing files
+}
+
 
 $apiKey = $_ENV['OPENAI_API_KEY'] ?? null;
 
