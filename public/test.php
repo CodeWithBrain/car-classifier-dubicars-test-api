@@ -220,9 +220,17 @@
                     body: formData
                 });
 
-                const data = await response.json();
+                let data;
+                try {
+                    data = await response.json();
+                } catch (jsonError) {
+                    // If response is not valid JSON, show a clear error
+                    const text = await response.text();
+                    displayResult({ error: 'Invalid JSON response from server.\n' + text }, false);
+                    return;
+                }
 
-                if (response.ok) {
+                if (response.ok && data.success) {
                     displayResult(data, true);
                 } else {
                     displayResult(data, false);
