@@ -3,9 +3,12 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 use Dotenv\Dotenv;
 
-// Load environment variables
-$dotenv = Dotenv::createImmutable(__DIR__ . '/..');
-$dotenv->load();
+// Load environment variables securely
+$envPath = __DIR__ . '/../.env';
+if (file_exists($envPath)) {
+    $dotenv = Dotenv::createImmutable(__DIR__ . '/..');
+    $dotenv->load();
+}
 
 // Set headers
 header('Content-Type: application/json');
