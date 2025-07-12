@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: car-classifier-api
+    env: php
+    buildCommand: composer install
+    startCommand: php -S 0.0.0.0:$PORT -t public
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false 

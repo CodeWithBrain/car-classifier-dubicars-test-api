@@ -1,0 +1,17 @@
+{
+    "name": "muhammadumer/car-classifier-dubicars-test-api",
+    "description": "Car classification API using OpenAI GPT-4o",
+    "type": "project",
+    "require": {
+        "php": ">=8.0",
+        "vlucas/phpdotenv": "^5.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "scripts": {
+        "start": "php -S localhost:8000 -t public"
+    }
+} 
